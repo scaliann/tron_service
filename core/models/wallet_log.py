@@ -11,3 +11,6 @@ class WalletLog(Base):
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     address: Mapped[str] = mapped_column(index=True)
     timestamp: Mapped[datetime] = mapped_column(default=datetime.utcnow)
+    balance: Mapped[float]
+    energy: Mapped[float]
+    bandwidth: Mapped[float]
