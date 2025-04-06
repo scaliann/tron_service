@@ -12,4 +12,5 @@ class DbSettings(BaseModel):
 class Settings(BaseSettings):
     db: DbSettings = DbSettings()
 
+
 settings = Settings()
