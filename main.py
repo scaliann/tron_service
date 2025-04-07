@@ -1,6 +1,6 @@
 from contextlib import asynccontextmanager
 import json
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, HTTPException, status
 from pydantic import BaseModel
 from redis.asyncio import from_url
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -41,6 +41,12 @@ async def post_wallet(
         if cached_wallet_info:
             return json.loads(cached_wallet_info)
         wallet_info = await get_wallet_info(request.address)
+        if wallet_info.get("error"):
+            # Можно либо вернуть словарь с ошибкой, либо выбросить HTTPException:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=wallet_info["error"]
+            )
         await redis_client.set(cache_key, json.dumps(wallet_info, default=float), ex=600)
         new_log = WalletLog(address=wallet_info['address'], balance=wallet_info['balance_trx'], energy=wallet_info['energy'], bandwidth=wallet_info['bandwidth'])
         session.add(new_log)
