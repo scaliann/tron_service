@@ -1,4 +1,47 @@
-.pytest_cache/
-db.sqlite3
+# Скомпилированные файлы Python и кэш
 __pycache__/
 *.py[cod]
+*$py.class
+
+# Виртуальные окружения (папки, созданные для изоляции зависимостей)
+venv/
+.env/
+.venv/
+ENV/
+env/
+
+# Папки сборки и упаковки (если есть)
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Логи и отчёты тестов
+*.log
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Тестовые отчёты, кэш и coverage
+.tox/
+.nox/
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+nosetests.xml
+coverage.xml
+
+# Настройки IDE и редакторов
+.vscode/
+.idea/
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# Файлы окружения и секретные настройки (не должны попадать в репозиторий)
+.env
+.env.*
+
+# Локальные базы данных (например, sqlite)
+*.sqlite3
