@@ -22,7 +22,7 @@ async def db_session(test_engine) -> AsyncSession:
     async with async_session() as session:
         yield session
 
-
+@pytest.mark.asyncio
 async def test_db_write(db_session: AsyncSession):
     # Создаем новую запись
     new_log = WalletLog(
