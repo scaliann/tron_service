@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from sqlalchemy import select
+import uvicorn
 
 from core.models.db_helper import db_helper
 from core.models.wallet_log import Base, WalletLog
@@ -49,3 +50,8 @@ async def get_logs(
     )
     logs = result.scalars().all()
     return logs
+
+
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0")
